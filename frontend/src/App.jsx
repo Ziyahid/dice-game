@@ -11,14 +11,14 @@ export default function App() {
   const [hash, setHash] = useState("");
 
   useEffect(() => {
-    axios.get("http://localhost:5000/balance").then((res) => setBalance(res.data.userBalance));
+    axios.get("https://dice-game-6drw.onrender.com/balance").then((res) => setBalance(res.data.userBalance));
   }, []);
 
   const rollDice = async () => {
     if (bet <= 0 || bet > balance) return alert("Invalid bet amount!");
 
     const clientSeed = Math.random().toString(36).substring(2, 10);
-    const response = await axios.post("http://localhost:5000/roll-dice", { betAmount: bet, clientSeed });
+    const response = await axios.post("https://dice-game-6drw.onrender.com//roll-dice", { betAmount: bet, clientSeed });
 
     setRollResult(response.data.roll);
     setBalance(response.data.userBalance);
